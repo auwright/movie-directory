@@ -6,12 +6,15 @@
 </head>
 <body>
   <h1>Search for a Movie</h1>
+
   <select id="search-type">
-  <option value="title">Title</option>
-  <option value="year">Year</option>
+    <option value="title">Title</option>
+    <option value="year">Year</option>
   </select>
+
   <input type="text" id="search-input" placeholder="Enter movie title">
   <button onclick="searchMovie()">Search</button>
+
   <div id="result"></div>
 
   <script>
@@ -145,33 +148,43 @@
       "Zoom: Academy of Superheroes": 2006
     };
 
-  function searchMovie() {
-    const input = document.getElementById("search-input").value.trim().toLowerCase();
-    const searchType = document.getElementById("search-type").value;
-    const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = "";
-  
-    let found = false;
-  
-    for (const [title, year] of Object.entries(movies)) {
-      if (
-        (searchType === "title" && title.toLowerCase().includes(input)) ||
-        (searchType === "year" && year.toString() === input)
-      ) {
-        resultDiv.innerHTML += `<p>You Have <strong>${title}</strong> On DVD :)</p>`;
-        found = true;
+    function searchMovie() {
+      const input = document.getElementById("search-input").value.trim().toLowerCase();
+      const searchType = document.getElementById("search-type").value;
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+
+      let found = false;
+
+      for (const [title, year] of Object.entries(movies)) {
+        if (
+          (searchType === "title" && title.toLowerCase().includes(input)) ||
+          (searchType === "year" && year.toString() === input)
+        ) {
+          resultDiv.innerHTML += `<p>You Have <strong>${title}</strong> On DVD :)</p>`;
+          found = true;
+        }
+      }
+
+      if (!found) {
+        if (searchType === "year") {
+          resultDiv.innerHTML = `<p>You Do Not Have Any DVDs From <strong>${input}</strong> :(</p>`;
+        } else {
+          const formattedInput = input.charAt(0).toUpperCase() + input.slice(1);
+          resultDiv.innerHTML = `<p>You Do Not Have <strong>${formattedInput}</strong> On DVD :(</p>`;
+        }
       }
     }
-  
-    if (!found) {
-      if (searchType === "year") {
-        resultDiv.innerHTML = `<p>You Do Not Have Any DVDs From <strong>${input}</strong> :(</p>`;
-      } else {
-        const formattedInput = input.charAt(0).toUpperCase() + input.slice(1);
-        resultDiv.innerHTML = `<p>You Do Not Have <strong>${formattedInput}</strong> On DVD :(</p>`;
-      }
-    }
+
+    // Bonus: Update input placeholder when dropdown changes
+    document.getElementById("search-type").addEventListener("change", function () {
+      const input = document.getElementById("search-input");
+      input.placeholder = this.value === "year" ? "Enter release year" : "Enter movie title";
+    });
   </script>
+</body>
+</html>
+
 
   <p><a href="movies.html">View Full Movie List</a></p>
 </body>
