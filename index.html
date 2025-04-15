@@ -164,10 +164,13 @@
     }
   
     if (!found) {
-      const formattedInput = input.charAt(0).toUpperCase() + input.slice(1);
-      resultDiv.innerHTML = `<p>You Do Not Have <strong>${formattedInput}</strong> On DVD :(</p>`;
+      if (searchType === "year") {
+        resultDiv.innerHTML = `<p>You Do Not Have Any DVDs From <strong>${input}</strong> :(</p>`;
+      } else {
+        const formattedInput = input.charAt(0).toUpperCase() + input.slice(1);
+        resultDiv.innerHTML = `<p>You Do Not Have <strong>${formattedInput}</strong> On DVD :(</p>`;
+      }
     }
-  }
   </script>
 
   <p><a href="movies.html">View Full Movie List</a></p>
