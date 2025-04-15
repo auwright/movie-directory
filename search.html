@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Movies</title>
+</head>
+<body>
+  <h1>Search for a Movie</h1>
+  <input type="text" id="search-input" placeholder="Enter movie title">
+  <button onclick="searchMovie()">Search</button>
+  <div id="result"></div>
+
+  <script>
+    const movies = {
+      "007 Casino Royale": 2006,
+      "27 Dresses": 2008,
+      "A Knight's Tale": 2001,
+      // Add more movie entries here...
+    };
+
+    function searchMovie() {
+      const input = document.getElementById("search-input").value.trim();
+      const resultDiv = document.getElementById("result");
+      const year = movies[input];
+
+      if (year) {
+        resultDiv.innerHTML = `<p><strong>${input}</strong> was released in <strong>${year}</strong>.</p>`;
+      } else {
+        resultDiv.innerHTML = `<p>Movie not found. Please check the title and try again.</p>`;
+      }
+    }
+  </script>
+
+  <p><a href="index.html">Back to Movie List</a></p>
+</body>
+</html>
