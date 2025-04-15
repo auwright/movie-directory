@@ -147,15 +147,15 @@
       resultDiv.innerHTML = "";
 
       let found = false;
-      for (const [title, year] of Object.entries(movies)) {
-        if (title.toLowerCase().includes(input)) {
-          resultDiv.innerHTML += `<p><strong>${title}</strong> was released in <strong>${year}</strong>.</p>`;
-          found = true;
-        }
+      for (const title of Object.keys(movies)) {
+      if (title.toLowerCase().includes(input)) {
+        resultDiv.innerHTML += `<p>You Have <strong>${title}</strong> On DVD :)</p>`;
+        found = true;
       }
+    }
 
       if (!found) {
-        resultDiv.innerHTML = `<p>No matching movies found. Try a different keyword.</p>`;
+        resultDiv.innerHTML = `<p>You Do Not have <strong>${title}</strong> On DVD :(</p>`;
       }
     }
   </script>
