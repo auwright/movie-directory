@@ -2,25 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Movie List</title>
+  <title>Search Movies</title>
 </head>
 <body>
-  <h1>Movie Release Years</h1>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>Movie</th>
-        <th>Release Year</th>
-      </tr>
-    </thead>
-    <tbody id="movie-table">
-      <tr><td>007 Casino Royale</td><td>2006</td></tr>
-      <tr><td>27 Dresses</td><td>2008</td></tr>
-      <tr><td>A Knight's Tale</td><td>2001</td></tr>
-      <!-- Add more rows as needed -->
-    </tbody>
-  </table>
+  <h1>Search for a Movie</h1>
+  <input type="text" id="search-input" placeholder="Enter movie title">
+  <button onclick="searchMovie()">Search</button>
+  <div id="result"></div>
 
-  <p><a href="search.html">Go to Search Page</a></p>
+  <script>
+    const movies = {
+      "007 Casino Royale": 2006,
+      "27 Dresses": 2008,
+      "A Knight's Tale": 2001,
+      "Alice In Wonderland": 2010,
+      "American Gangster": 2007,
+      "Austin Powers: The Spy Who Shagged Me": 1999,
+      "Avatar": 2009,
+      "Bad Moms": 2016,
+      "Because of Winn-Dixie": 2005,
+      "Blades of Glory": 2007,
+      // Add the rest of the movies...
+    };
+
+    function searchMovie() {
+      const input = document.getElementById("search-input").value.trim().toLowerCase();
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+
+      let found = false;
+      for (const [title, year] of Object.entries(movies)) {
+        if (title.toLowerCase().includes(input)) {
+          resultDiv.innerHTML += `<p><strong>${title}</strong> was released in <strong>${year}</strong>.</p>`;
+          found = true;
+        }
+      }
+
+      if (!found) {
+        resultDiv.innerHTML = `<p>No matching movies found. Try a different keyword.</p>`;
+      }
+    }
+  </script>
+
+  <p><a href="movies.html">View Full Movie List</a></p>
 </body>
 </html>
+
