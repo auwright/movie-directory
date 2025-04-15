@@ -15,18 +15,29 @@
       "007 Casino Royale": 2006,
       "27 Dresses": 2008,
       "A Knight's Tale": 2001,
-      // Add more movie entries here...
+      "Alice In Wonderland": 2010,
+      "American Gangster": 2007,
+      "Austin Powers: The Spy Who Shagged Me": 1999,
+      "Avatar": 2009,
+      "Bad Moms": 2016,
+      // Add more movies as needed...
     };
 
     function searchMovie() {
-      const input = document.getElementById("search-input").value.trim();
+      const input = document.getElementById("search-input").value.trim().toLowerCase();
       const resultDiv = document.getElementById("result");
-      const year = movies[input];
+      resultDiv.innerHTML = "";
 
-      if (year) {
-        resultDiv.innerHTML = `<p><strong>${input}</strong> was released in <strong>${year}</strong>.</p>`;
-      } else {
-        resultDiv.innerHTML = `<p>Movie not found. Please check the title and try again.</p>`;
+      let found = false;
+      for (const [title, year] of Object.entries(movies)) {
+        if (title.toLowerCase().includes(input)) {
+          resultDiv.innerHTML += `<p><strong>${title}</strong> was released in <strong>${year}</strong>.</p>`;
+          found = true;
+        }
+      }
+
+      if (!found) {
+        resultDiv.innerHTML = `<p>No matching movies found. Try a different keyword.</p>`;
       }
     }
   </script>
@@ -34,3 +45,4 @@
   <p><a href="index.html">Back to Movie List</a></p>
 </body>
 </html>
+
