@@ -2,21 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Movie List</title>
+  <title>Movie List Filter by Series</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    select {
+      margin-bottom: 15px;
+      padding: 5px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Wright's DVD Collection</h1>
 
-  <p><a href="index.html">Back to Search</a></p>
-  
-  <table border="1">
+  <h1>Movie/TV List</h1>
+
+  <label for="seriesFilter">Filter by Series:</label>
+  <select id="seriesFilter">
+    <option value="">All</option>
+  </select>
+
+  <table id="movieTable">
     <thead>
       <tr>
         <th>Title</th>
-        <th>Movie/TV</th>
-        <th>Release Year</th>
+        <th>Type</th>
+        <th>Year</th>
         <th>Series</th>
-        <th>Series #</th>
+        <th>Position</th>
       </tr>
     </thead>
     <tbody>
@@ -150,7 +175,38 @@
     </tbody>
   </table>
 
-  <p><a href="index.html">Back to Search</a></p>
+  <script>
+    const seriesFilter = document.getElementById('seriesFilter');
+    const table = document.getElementById('movieTable');
+    const rows = table.querySelectorAll('tbody tr');
+
+    // Populate the dropdown with unique series values
+    const seriesSet = new Set();
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const seriesCell = cells[3];
+      if (seriesCell && seriesCell.textContent.trim()) {
+        seriesSet.add(seriesCell.textContent.trim());
+      }
+    });
+
+    Array.from(seriesSet).sort().forEach(series => {
+      const option = document.createElement('option');
+      option.value = series;
+      option.textContent = series;
+      seriesFilter.appendChild(option);
+    });
+
+    // Filter logic
+    seriesFilter.addEventListener('change', () => {
+      const selected = seriesFilter.value;
+      rows.forEach(row => {
+        const seriesCell = row.querySelectorAll('td')[3];
+        const match = !selected || (seriesCell && seriesCell.textContent.trim() === selected);
+        row.style.display = match ? '' : 'none';
+      });
+    });
+  </script>
+
 </body>
 </html>
-
