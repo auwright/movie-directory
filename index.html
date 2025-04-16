@@ -12,7 +12,7 @@
     <option value="year">Year</option>
   </select>
 
-  <input type="text" id="search-input" placeholder="Enter movie title">
+  <input type="text" id="search-input" placeholder="Enter Movie Title">
   <button onclick="searchMovie()">Search</button>
 
   <div id="result"></div>
@@ -179,7 +179,7 @@
     // Bonus: Update input placeholder when dropdown changes
     document.getElementById("search-type").addEventListener("change", function () {
       const input = document.getElementById("search-input");
-      input.placeholder = this.value === "year" ? "Enter release year" : "Enter movie title";
+      input.placeholder = this.value === "year" ? "Enter Release Year" : "Enter Movie Title";
     });
   </script>
 </body>
