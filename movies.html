@@ -4,26 +4,55 @@
   <meta charset="UTF-8">
   <title>Movie List Filter by Series</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      padding: 8px 12px;
-      border: 1px solid #ddd;
-    }
-    th {
-      background-color: #f4f4f4;
-    }
-    select {
-      margin-bottom: 15px;
-      padding: 5px;
-    }
-  </style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    padding: 4px 8px; /* Reduced padding to decrease space */
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f4f4f4;
+  }
+
+  /* Specific width for the columns */
+  th:nth-child(1), td:nth-child(1) { /* Title column */
+    width: 20%; /* Adjust the width */
+  }
+
+  th:nth-child(2), td:nth-child(2) { /* Movie/TV column */
+    width: 15%; /* Adjust the width */
+  }
+
+  th:nth-child(3), td:nth-child(3) { /* Year column */
+    width: 10%; /* Adjust the width */
+  }
+
+  th:nth-child(4), td:nth-child(4) { /* Series column */
+    width: 20%; /* Adjust the width */
+  }
+
+  th:nth-child(5), td:nth-child(5) { /* Series # column */
+    width: 25%; /* Adjust the width */
+  }
+
+  th:nth-child(6), td:nth-child(6) { /* Series # column */
+    width: 10%; /* Adjust the width */
+  }
+
+  select {
+    margin-bottom: 15px;
+    padding: 5px;
+  }
+</style>
 </head>
 <body>
 
